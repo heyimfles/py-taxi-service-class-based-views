@@ -2,11 +2,24 @@
 {%  block content %}
   <h1>Manufacturer List:</h1>
   {%  if manufacturer_list %}
-  <ul>
-    {% for manufacturer in manufacturer_list %}
-      <li>Name: {{ manufacturer.name }}, Country: {{ manufacturer.country }}</li>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Country</th>
+      </tr>
+    </thead>
+    {%  for manufacturer in manufacturer_list %}
+      <tbody>
+        <tr>
+          <th scope="row">{{ manufacturer.pk }}</th>
+          <td>{{ manufacturer.name }}</td>
+          <td>{{manufacturer.country}}</td>
+        </tr>
+      </tbody>
     {% endfor %}
-  </ul>
+  </table>
   {% else %}
   <p>No Manufacturers</p>
   {% endif %}

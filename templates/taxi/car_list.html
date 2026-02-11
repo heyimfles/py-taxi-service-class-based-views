@@ -2,11 +2,28 @@
 {%  block content %}
   <h1>Cars List:</h1>
   {% if car_list %}
-  <ul>
-    {% for car in car_list %}
-      <li>Model: <a href="{% url "taxi:car-detail" car.pk %}">{{ car.model }}</a></li>
-    {% endfor %}
-  </ul>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Model</th>
+          <th scope="col">Manufacturer</th>
+        </tr>
+      </thead>
+      {% for car in car_list %}
+        <tbody>
+          <tr>
+            <th scope="row">
+              <a href="{%  url "taxi:car-detail" car.pk %}">
+                {{ car.pk }}
+              </a>
+            </th>
+            <td>{{ car.model }}</td>
+            <td>{{ car.manufacturer.name }}</td>
+          </tr>
+        </tbody>
+      {% endfor %}
+    </table>
   {% else %}
   <p>No Cars</p>
   {% endif %}
